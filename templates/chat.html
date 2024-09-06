@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Chat App</title>
+</head>
+<body>
+<h1> Wellcome to chat room {{ room }}</h1>
+<div id="message"></div>
+<form>
+    <input type="text" placeholder="Enter your message">
+    <button type="submit">Send</button>
+</form>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<script>
+    const sio = io.connect("http://127.0.0.1:8000");
+
+    sio.on('connect', () => {
+      console.log('user is connected');
+      sio.emit('join_room', {
+      "username": {username},
+      "room": {room},
+      "restrictions": [],
+      "components": []
+    }
+    );
+    });
+
+
+    </script>
+</html>
